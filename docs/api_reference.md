@@ -2,7 +2,23 @@
 
 Base URL: `https://www.swatgenx.com` (use `www` so `/api/*` hits the app, not the marketing apex).
 
-All paths below require authentication (API key headers unless noted).
+## Discovery (same data the map uses — no API key)
+
+These **GET** routes power the Watershed Explorer UI: pick a USGS site or an HUC8, then draw contributing **HUC12** subbasins. They return JSON the SPA uses for outlines and counts. **You do not need to send API keys** for these read-only calls (rate limits and infrastructure still apply).
+
+| Method | Path | Query | Returns (high level) |
+|--------|------|-------|----------------------|
+| GET | `/api/get_station_characteristics` | `station=<USGS site_no>` | Station metadata plus **`Num HUC12 subbasins`** and `geometries` / stream / lake layers for those HUC12s. |
+| GET | `/api/get_huc8_characteristics` | `huc8=<8-digit code>` | HUC8 label, **`Num HUC12 subbasins`**, and the same style of geometry payloads for all HUC12s in the basin. |
+| GET | `/api/huc8-basin-summary` | `huc8=<8-digit code>` | Lightweight JSON: name, **`Num HUC12 subbasins`**, `watershed_area_sqkm` — no heavy geometry arrays. |
+
+Use **`Num HUC12 subbasins`** (or count parsed HUC12 IDs) before calling **`POST /api/model-settings`**: on **Basic**, the server rejects stations above the HUC12 cap (see `docs/subscription_tiers.md`).
+
+---
+
+## Model creation & task APIs (API key required)
+
+Send headers from `docs/authentication.md` on every request below.
 
 ## `POST /api/model-settings`
 

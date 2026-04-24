@@ -4,7 +4,8 @@ The same **account and subscription rules** apply whether you use the web app or
 
 ## Basic
 
-- **USGS station** (`POST /api/model-settings`) builds are allowed when the station’s contributing **HUC12 count** is within the Basic cap (the app computes this server-side). Larger watersheds return **403** with codes such as `basic_huc12_limit`.
+- **Daily cap:** up to **5** SWAT+ **model creation** orders per **UTC calendar day** (same counter as the web app).
+- **USGS station** (`POST /api/model-settings`) builds are allowed when the station’s contributing **HUC12 count** is **≤ 15** (the app computes this server-side from the same station table as the map). Larger watersheds return **403** with codes such as `basic_huc12_limit`. To preview a station’s footprint, call **`GET /api/get_station_characteristics?station=<site_no>`** and read **`Num HUC12 subbasins`** (see `docs/api_reference.md`).
 - **Calibration / validation** options on model creation are **Pro-only**; Basic requests that enable them receive **403** (`calval_pro_only`).
 - **HUC8 whole-basin** orders (`POST /api/model-settings-huc8`) are **not** available on Basic — **403** (`tier_limit` / Pro messaging).
 

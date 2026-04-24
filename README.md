@@ -2,6 +2,39 @@
 
 Public **Jupyter notebook** + small **Python** helpers for the SWATGenX API at **`https://www.swatgenx.com`**.
 
+## Get an API key (required for model orders)
+
+1. **Sign up** (or log in) at **[swatgenx.com](https://www.swatgenx.com)**.
+2. Open **[Subscription](https://www.swatgenx.com/subscription)**.
+3. In the **API keys** section, **generate** a key. It will start with **`sgx_`**. Store it in a password manager or `.env` — never commit it to git.
+
+Send that key on every authenticated request using **both** headers (see **`docs/authentication.md`**): `Authorization: Bearer <sgx_…>` and `X-SWATGenX-Api-Key: <sgx_…>`.
+
+## Basic plan — what API users should expect
+
+**Basic** is the default free tier. For **USGS station** SWAT+ orders (`POST /api/model-settings`), the same rules as the web app apply:
+
+- **Up to 5 SWAT+ model orders per UTC calendar day** (rolling reset on the server).
+- Each station order is allowed only if the contributing watershed has **at most 15 HUC12 subbasins** (the app counts them server-side). Larger stations return **403** with codes such as `basic_huc12_limit`.
+
+**Pro (effective)** removes those Basic caps for station builds, unlocks **HUC8 whole-basin** creation, and raises monthly quotas — see **`docs/subscription_tiers.md`** and live numbers on the Subscription page.
+
+## Discover HUC12 counts the same way the map does
+
+The web map loads a USGS site (or an HUC8), then the **server** returns the contributing **HUC12** set and draws it. Your scripts can use the **same HTTP endpoints** (no API key needed for these read-only GETs):
+
+| Goal | Endpoint |
+|------|----------|
+| Station: metadata + HUC12 outlines + **`Num HUC12 subbasins`** | `GET https://www.swatgenx.com/api/get_station_characteristics?station=<site_no>` |
+| HUC8: full basin geometry stack + **`Num HUC12 subbasins`** | `GET https://www.swatgenx.com/api/get_huc8_characteristics?huc8=<8-digit>` |
+| HUC8: **lightweight** name, HUC12 count, area (km²) only | `GET https://www.swatgenx.com/api/huc8-basin-summary?huc8=<8-digit>` |
+
+Parse **`Num HUC12 subbasins`** (or derive a count from returned HUC12 lists) **before** you `POST /api/model-settings`, so Basic users avoid a predictable 403. For **HUC8** builds, use the characteristics or summary response to understand basin size; the actual **`POST /api/model-settings-huc8`** call still requires **Pro** in production.
+
+Details and the authenticated route table: **`docs/api_reference.md`**.
+
+---
+
 **Fastest path:** open **`notebooks/01_simple_station_model.ipynb`** in JupyterLab — set your **API key** and **USGS station ID** (`site_no`), run all cells, wait until the task shows **SUCCESS**, then use the **email download link** or the **web dashboard** to fetch files. (The API does not stream the ZIP back in one synchronous call; see the notebook intro.)
 
 For **HUC8** (whole basin) or raw `requests` scripts, see **`examples/`** and **`docs/`**.
@@ -11,7 +44,7 @@ This tree is also reachable from the private SWATGenX monorepo as **`documents/p
 
 ## Subscription = same limits as the web app
 
-API keys are tied to your **user account**. **Basic** accounts hit the same **HUC12 / cal-val / HUC8** restrictions as in the UI; **Pro** unlocks HUC8 and cal/val where documented. See **`docs/subscription_tiers.md`**.
+API keys are tied to your **user account**. **Basic** accounts hit the same **HUC12 / daily order / HUC8** restrictions as in the UI; **Pro** unlocks HUC8 and cal/val where documented. See **`docs/subscription_tiers.md`**.
 
 ## What SWATGenX exposes
 

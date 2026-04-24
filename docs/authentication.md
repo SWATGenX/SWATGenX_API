@@ -2,8 +2,9 @@
 
 ## API keys (recommended for scripts)
 
-1. Sign in at [SWATGenX](https://www.swatgenx.com), open **Subscription / API keys** (wording may vary), and create a key prefixed with `sgx_`.
-2. Send the same token in **both** headers on every request:
+1. **Create an account** at [swatgenx.com](https://www.swatgenx.com) (sign up / log in).
+2. Open **[Subscription](https://www.swatgenx.com/subscription)** — scroll to **API keys** and **Generate** a key. Keys look like `sgx_…` (treat them like passwords).
+3. Send the same token in **both** headers on every authenticated request:
 
 | Header | Value |
 |--------|--------|
