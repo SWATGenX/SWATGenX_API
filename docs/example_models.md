@@ -1,6 +1,9 @@
 # Example sites (small regression-style cases)
 
 [![USGS](https://img.shields.io/badge/data-USGS%20stations-004a99?style=flat-square)](https://waterdata.usgs.gov/)
+[![Example models](https://img.shields.io/badge/download-Example%20SWAT%2B%20models-0f766e?style=flat-square)](https://www.swatgenx.com/example-models)
+
+To inspect **finished** SWAT+ packages (not just API test IDs), **log in** at [swatgenx.com](https://www.swatgenx.com) and open **[Example SWAT+ models](https://www.swatgenx.com/example-models)** for direct downloads.
 
 These USGS `site_no` values are used in SWATGenX internal reliability harnesses: they are **small** PRISM-ready stations suitable for demos (always respect your subscription quota).
 

@@ -88,17 +88,15 @@ CLI alternative: `pip install -r requirements.txt` then `python examples/create_
 | **`notebooks/01_simple_station_model.ipynb`** | **Main user story:** station ID + API key → submit → poll → download guidance. |
 | `examples/*.py` | Minimal `requests` scripts (no pip package). |
 | `docs/` | Authentication, tiers, endpoint table. |
-| `example_outputs/` | Screenshots when you publish. |
+| `example_outputs/` | Pointers + optional screenshots; **download real examples** from [Example SWAT+ models](https://www.swatgenx.com/example-models) (log in on the site). |
 | `requirements.txt` | `requests` only (add `jupyterlab` locally for the notebook). |
 | `.env.example` | Variable names only — **never** commit real keys. |
 
 ## 🌐 Website
 
-Host a short product page on **www.swatgenx.com** (e.g. `/developer-api` or `/api-access`) that:
-
-- States the capability: programmatic SWAT+ generation by **USGS station** or **HUC8**.
-- Links to the **public GitHub repo** once published.
-- Uses **screenshots** from `example_outputs/screenshots/` (order JSON, dashboard or email “ready” state).
+- **Example outputs:** signed-in users can download curated SWAT+ packages from **[Example SWAT+ models](https://www.swatgenx.com/example-models)** — same idea as what you get after a successful API build (log in on the site).
+- **Product / API page:** host a short page on **www.swatgenx.com** (e.g. `/developer-api` or `/api-access`) that states programmatic generation by **USGS station** or **HUC8** and links to this **public GitHub repo**.
+- **Optional repo assets:** use non-sensitive **screenshots** in `example_outputs/screenshots/` (order JSON, dashboard or email “ready” state) if you publish visuals alongside the docs.
 
 ## 🔒 Security
 
