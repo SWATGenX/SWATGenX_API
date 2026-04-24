@@ -107,6 +107,7 @@ CLI alternative: `pip install -r requirements.txt` then `python examples/create_
 | **`notebooks/01_simple_station_model.ipynb`** | **Main user story:** station ID + API key → submit → poll → download guidance. |
 | `examples/*.py` | Minimal `requests` scripts (no pip package). |
 | `docs/` | Authentication, tiers, endpoint table. |
+| [`API_TERMS.md`](API_TERMS.md) | MIT vs hosted service / website Terms & Privacy. |
 | `example_outputs/` | Pointers + optional screenshots; **download real examples** from [Example SWAT+ models](https://www.swatgenx.com/example-models) (log in on the site). |
 | `requirements.txt` | `requests` only (add `jupyterlab` locally for the notebook). |
 | `.env.example` | Variable names only — **never** commit real keys. |
@@ -121,6 +122,14 @@ CLI alternative: `pip install -r requirements.txt` then `python examples/create_
 
 - Never commit **`.env`**, API keys (`sgx_…`), or GitHub tokens to this public repository.
 - Revoke any token that was ever pasted into chat, logs, or a committed file.
+
+## License and API terms
+
+The example scripts and documentation in this repository are released under the **MIT License** ([`LICENSE`](LICENSE)).
+
+Use of the SWATGenX web application, API, generated model outputs, subscription features, and download services is governed by the SWATGenX **Terms of Service** and **Privacy Policy** on the website (**[Terms](https://www.swatgenx.com/terms)** · **[Privacy](https://www.swatgenx.com/privacy)**). This repository does not grant rights to the SWATGenX backend, platform code, datasets, trademarks, hosted services, or generated commercial outputs beyond what is allowed by those terms.
+
+More detail: **[`API_TERMS.md`](API_TERMS.md)**.
 
 ## 🧪 Relationship to internal QA
 
