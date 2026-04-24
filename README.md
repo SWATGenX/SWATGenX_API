@@ -65,7 +65,7 @@ Or Python: see **`examples/download_model_by_token_url.py`** and **`examples/dow
 
 For **HUC8** (whole basin) or raw `requests` scripts, see **`examples/`** and **`docs/`**.
 
-**Repository:** [github.com/Vahidr32/SWATGenX](https://github.com/Vahidr32/SWATGenX)  
+**Repository:** [github.com/SWATGenX/SWATGenX_API](https://github.com/SWATGenX/SWATGenX_API)  
 This tree is also reachable from the private SWATGenX monorepo as **`documents/public_swatgenx_api_examples/`** (usually a **symlink** to this clone — see **`RELEASING.md`**) so there is one copy to edit, not a manual `rsync` (no backend code, no private paths).
 
 ## ⚖️ Subscription = same limits as the web app
