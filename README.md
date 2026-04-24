@@ -6,8 +6,7 @@ Public **Jupyter notebook** + small **Python** helpers for the SWATGenX API at *
 
 For **HUC8** (whole basin) or raw `requests` scripts, see **`examples/`** and **`docs/`**.
 
-**Repository:** [github.com/Vahidr32/SWATGenX](https://github.com/Vahidr32/SWATGenX)  
-This tree is also reachable from the private SWATGenX monorepo as **`documents/public_swatgenx_api_examples/`** (usually a **symlink** to this clone — see **`RELEASING.md`**) so there is one copy to edit, not a manual `rsync` (no backend code, no private paths).
+**Repository:** [github.com/SWATGenX/SWATGenX_API](https://github.com/SWATGenX/SWATGenX_API)
 
 ## Subscription = same limits as the web app
 
@@ -32,7 +31,8 @@ Downloads of completed workspaces are typically issued via **email links** (toke
 ## Quick start (JupyterLab — recommended)
 
 ```bash
-cd documents/public_swatgenx_api_examples   # path inside private monorepo; or clone the public GitHub repo
+git clone https://github.com/SWATGenX/SWATGenX_API.git
+cd SWATGenX_API
 python3 -m venv .venv && . .venv/bin/activate
 pip install jupyterlab requests
 export SWATGENX_API_KEY='sgx_…'
@@ -54,17 +54,9 @@ CLI alternative: `pip install -r requirements.txt` then `python examples/create_
 
 ## Website
 
-Host a short product page on **www.swatgenx.com** (e.g. `/developer-api` or `/api-access`) that:
-
-- States the capability: programmatic SWAT+ generation by **USGS station** or **HUC8**.
-- Links to the **public GitHub repo** once published.
-- Uses **screenshots** from `example_outputs/screenshots/` (order JSON, dashboard or email “ready” state).
+Use **[SWATGenX Developer API](https://www.swatgenx.com/developer-api)** for the public website overview: programmatic SWAT+ generation by **USGS station** or **HUC8**, with links back to this GitHub repo and the example-model catalog.
 
 ## Security
 
 - Never commit **`.env`**, API keys (`sgx_…`), or GitHub tokens to this public repository.
 - Revoke any token that was ever pasted into chat, logs, or a committed file.
-
-## Relationship to internal QA
-
-The private application codebase includes HTTP reliability harnesses used before releases. Those scripts are **not** part of this public repo; this repo stays **client-only** (`requests` + docs).
