@@ -1,5 +1,7 @@
 # Example sites (small regression-style cases)
 
+[![USGS](https://img.shields.io/badge/data-USGS%20stations-004a99?style=flat-square)](https://waterdata.usgs.gov/)
+
 These USGS `site_no` values are used in SWATGenX internal reliability harnesses: they are **small** PRISM-ready stations suitable for demos (always respect your subscription quota).
 
 | `site_no` | Note |

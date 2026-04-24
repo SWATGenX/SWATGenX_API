@@ -1,5 +1,8 @@
 # Python examples (`requests` only)
 
+[![requests](https://img.shields.io/badge/HTTP-requests-3775A9?style=flat-square&logo=python&logoColor=white)](https://requests.readthedocs.io/)
+[![SWATGenX](https://img.shields.io/badge/API-www.swatgenx.com-0f766e?style=flat-square)](https://www.swatgenx.com)
+
 Run from the bundle root so `os.environ` loads from your shell after `export` or from a tool that reads `.env`.
 
 ```bash

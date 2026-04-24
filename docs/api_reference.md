@@ -1,8 +1,11 @@
 # API reference (model creation subset)
 
+[![Base URL](https://img.shields.io/badge/base-www.swatgenx.com-0f766e?style=flat-square)](https://www.swatgenx.com)
+[![Auth doc](https://img.shields.io/badge/auth-see%20authentication.md-7c3aed?style=flat-square)](authentication.md)
+
 Base URL: `https://www.swatgenx.com` (use `www` so `/api/*` hits the app, not the marketing apex).
 
-## Discovery (same data the map uses — no API key)
+## 🗺️ Discovery (same data the map uses — no API key)
 
 These **GET** routes power the Watershed Explorer UI: pick a USGS site or an HUC8, then draw contributing **HUC12** subbasins. They return JSON the SPA uses for outlines and counts. **You do not need to send API keys** for these read-only calls (rate limits and infrastructure still apply).
 
@@ -16,7 +19,7 @@ Use **`Num HUC12 subbasins`** (or count parsed HUC12 IDs) before calling **`POST
 
 ---
 
-## Model creation & task APIs (API key required)
+## 🔐 Model creation & task APIs (API key required)
 
 Send headers from `docs/authentication.md` on every request below.
 
@@ -62,7 +65,7 @@ Stop an in-flight model build when the task is still in an active dashboard phas
 
 User’s Celery-tracked tasks plus `model_creation_broker` snapshot (slots, queue depth).
 
-## Downloads
+## 📦 Downloads
 
 - **Token link** (from email): `GET /download_model/<token>` — no API key; token is time-limited.
 - **Authenticated path**: browser or session-based `GET /download/...` under the user tree — see product docs when exposing zip layout.

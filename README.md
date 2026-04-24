@@ -1,8 +1,15 @@
 # SWATGenX Model Creation API — generate SWAT+ models by USGS station or HUC8
 
+[![SWATGenX](https://img.shields.io/badge/SWATGenX-www.swatgenx.com-0f766e?style=flat-square)](https://www.swatgenx.com)
+[![Subscription / API keys](https://img.shields.io/badge/API%20keys-Subscription-7c3aed?style=flat-square)](https://www.swatgenx.com/subscription)
+[![Python](https://img.shields.io/badge/stack-Python%20%2B%20requests-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-see%20repo-6b7280?style=flat-square)](LICENSE)
+
 Public **Jupyter notebook** + small **Python** helpers for the SWATGenX API at **`https://www.swatgenx.com`**.
 
-## Get an API key (required for model orders)
+> **Note:** GitHub Markdown does not support custom text colors; **badges** (above) and **emoji** in headings are the portable way to add color on the default theme.
+
+## 🔑 Get an API key (required for model orders)
 
 1. **Sign up** (or log in) at **[swatgenx.com](https://www.swatgenx.com)**.
 2. Open **[Subscription](https://www.swatgenx.com/subscription)**.
@@ -10,7 +17,7 @@ Public **Jupyter notebook** + small **Python** helpers for the SWATGenX API at *
 
 Send that key on every authenticated request using **both** headers (see **`docs/authentication.md`**): `Authorization: Bearer <sgx_…>` and `X-SWATGenX-Api-Key: <sgx_…>`.
 
-## Basic plan — what API users should expect
+## 🎫 Basic plan — what API users should expect
 
 **Basic** is the default free tier. For **USGS station** SWAT+ orders (`POST /api/model-settings`), the same rules as the web app apply:
 
@@ -19,7 +26,7 @@ Send that key on every authenticated request using **both** headers (see **`docs
 
 **Pro (effective)** removes those Basic caps for station builds, unlocks **HUC8 whole-basin** creation, and raises monthly quotas — see **`docs/subscription_tiers.md`** and live numbers on the Subscription page.
 
-## Discover HUC12 counts the same way the map does
+## 🗺️ Discover HUC12 counts the same way the map does
 
 The web map loads a USGS site (or an HUC8), then the **server** returns the contributing **HUC12** set and draws it. Your scripts can use the **same HTTP endpoints** (no API key needed for these read-only GETs):
 
@@ -42,11 +49,11 @@ For **HUC8** (whole basin) or raw `requests` scripts, see **`examples/`** and **
 **Repository:** [github.com/Vahidr32/SWATGenX](https://github.com/Vahidr32/SWATGenX)  
 This tree is also reachable from the private SWATGenX monorepo as **`documents/public_swatgenx_api_examples/`** (usually a **symlink** to this clone — see **`RELEASING.md`**) so there is one copy to edit, not a manual `rsync` (no backend code, no private paths).
 
-## Subscription = same limits as the web app
+## ⚖️ Subscription = same limits as the web app
 
 API keys are tied to your **user account**. **Basic** accounts hit the same **HUC12 / daily order / HUC8** restrictions as in the UI; **Pro** unlocks HUC8 and cal/val where documented. See **`docs/subscription_tiers.md`**.
 
-## What SWATGenX exposes
+## 📡 What SWATGenX exposes
 
 SWATGenX offers authenticated HTTP APIs to queue **SWAT+** model builds from national datasets:
 
@@ -62,7 +69,7 @@ SWATGenX offers authenticated HTTP APIs to queue **SWAT+** model builds from nat
 
 Downloads of completed workspaces are typically issued via **email links** (token-based `GET /download_model/<token>`) or the signed-in web app (`/download/...`). See `docs/api_reference.md`.
 
-## Quick start (JupyterLab — recommended)
+## 🚀 Quick start (JupyterLab — recommended)
 
 ```bash
 cd documents/public_swatgenx_api_examples   # path inside private monorepo; or clone the public GitHub repo
@@ -74,7 +81,7 @@ jupyter lab notebooks/01_simple_station_model.ipynb
 
 CLI alternative: `pip install -r requirements.txt` then `python examples/create_model_by_usgs_station.py`.
 
-## Layout
+## 📂 Layout
 
 | Path | Purpose |
 |------|---------|
@@ -85,7 +92,7 @@ CLI alternative: `pip install -r requirements.txt` then `python examples/create_
 | `requirements.txt` | `requests` only (add `jupyterlab` locally for the notebook). |
 | `.env.example` | Variable names only — **never** commit real keys. |
 
-## Website
+## 🌐 Website
 
 Host a short product page on **www.swatgenx.com** (e.g. `/developer-api` or `/api-access`) that:
 
@@ -93,11 +100,11 @@ Host a short product page on **www.swatgenx.com** (e.g. `/developer-api` or `/ap
 - Links to the **public GitHub repo** once published.
 - Uses **screenshots** from `example_outputs/screenshots/` (order JSON, dashboard or email “ready” state).
 
-## Security
+## 🔒 Security
 
 - Never commit **`.env`**, API keys (`sgx_…`), or GitHub tokens to this public repository.
 - Revoke any token that was ever pasted into chat, logs, or a committed file.
 
-## Relationship to internal QA
+## 🧪 Relationship to internal QA
 
 The private application codebase includes HTTP reliability harnesses used before releases. Those scripts are **not** part of this public repo; this repo stays **client-only** (`requests` + docs).

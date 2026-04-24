@@ -1,5 +1,7 @@
 # Downloading a completed model
 
+[![Download](https://img.shields.io/badge/flow-email%20%2B%20token-0ea5e9?style=flat-square)](https://www.swatgenx.com)
+
 Completed SWAT+ workspaces are **not** returned inline from `POST /api/model-settings`. Typical flows:
 
 1. **Email** — completion messages include a time-limited **`GET /download_model/<token>`** link (no API key). Use that URL in a browser or `curl -L -o model.zip "https://www.swatgenx.com/download_model/<token>"`.
