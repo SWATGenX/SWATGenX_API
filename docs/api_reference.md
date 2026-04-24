@@ -13,7 +13,7 @@ Queue or start a **station-centered** (USGS / PRISM site) SWAT+ model.
 | Field | Type | Required | Notes |
 |-------|------|----------|--------|
 | `site_no` | string | yes | USGS station ID (e.g. eight-digit `05580950`). |
-| `ls_resolution` | number | no | Land surface / Landslide-related grid in **meters** (product tiers apply). |
+| `ls_resolution` | number | no | landuse/soil resolution |
 | `dem_resolution` | number | no | DEM resolution in **meters** (tiers apply). |
 
 **Success:** JSON includes `status`, `order_id` (durable queue id when enqueue is used), and often `task_id` when dispatched immediately.

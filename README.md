@@ -7,7 +7,7 @@ Public **Jupyter notebook** + small **Python** helpers for the SWATGenX API at *
 For **HUC8** (whole basin) or raw `requests` scripts, see **`examples/`** and **`docs/`**.
 
 **Repository:** [github.com/Vahidr32/SWATGenX](https://github.com/Vahidr32/SWATGenX)  
-This tree is also maintained inside the private SWATGenX monorepo as **`documents/public_swatgenx_api_examples/`** for drift control — publish by syncing that folder here (no backend code, no private paths).
+This tree is also reachable from the private SWATGenX monorepo as **`documents/public_swatgenx_api_examples/`** (usually a **symlink** to this clone — see **`RELEASING.md`**) so there is one copy to edit, not a manual `rsync` (no backend code, no private paths).
 
 ## Subscription = same limits as the web app
 
