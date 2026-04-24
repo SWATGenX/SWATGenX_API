@@ -21,4 +21,5 @@ python examples/create_model_by_usgs_station.py
 | `task_status.py` | `GET /api/task_status/<task_id>` (pass id on CLI) |
 | `cancel_queued_order.py` | `POST /api/model-orders/<order_id>/cancel` |
 | `cancel_running_task.py` | `POST /api/model_task/<task_id>/cancel` |
-| `download_model.md` | How token-based `GET /download_model/<token>` fits the workflow |
+| `download_model.md` | Token URL from email → `curl` / Python streaming download |
+| `download_model_by_token_url.py` | `SWATGENX_DOWNLOAD_URL=…` → writes `SWAT_Model.zip` (or `SWATGENX_OUT_ZIP`) |

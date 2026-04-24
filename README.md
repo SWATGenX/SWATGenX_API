@@ -40,9 +40,28 @@ Parse **`Num HUC12 subbasins`** (or derive a count from returned HUC12 lists) **
 
 Details and the authenticated route table: **`docs/api_reference.md`**.
 
+## 📥 Get the ZIP (same token URL as the email)
+
+When the build finishes, SWATGenX emails a **time-limited** link of the form:
+
+`https://www.swatgenx.com/download_model/<token>`
+
+That is a normal **`GET`** that returns the ZIP attachment — **the same URL** whether you click it in the email or pass it to automation. **Do not** send `Authorization` / `X-SWATGenX-Api-Key` on that request; the token path is the credential.
+
+**Programmatic download** (after you copy the URL once from the completion email or dashboard):
+
+```bash
+export SWATGENX_DOWNLOAD_URL='https://www.swatgenx.com/download_model/<token-from-email>'
+curl -fL --output SWAT_Model.zip "$SWATGENX_DOWNLOAD_URL"
+```
+
+Or Python: see **`examples/download_model_by_token_url.py`** and **`examples/download_model.md`** (streaming `requests`, expiry / re-download limits).
+
+`GET /api/task_status/<task_id>` is for **progress**; it does **not** currently return the download URL in JSON — use the email (or dashboard) to obtain `SWATGENX_DOWNLOAD_URL` for CI or servers.
+
 ---
 
-**Fastest path:** open **`notebooks/01_simple_station_model.ipynb`** in JupyterLab — set your **API key** and **USGS station ID** (`site_no`), run all cells, wait until the task shows **SUCCESS**, then use the **email download link** or the **web dashboard** to fetch files. (The API does not stream the ZIP back in one synchronous call; see the notebook intro.)
+**Fastest path:** open **`notebooks/01_simple_station_model.ipynb`** in JupyterLab — set your **API key** and **USGS station ID** (`site_no`), run all cells, wait until the task shows **SUCCESS**, then use the **email download link** (or the same URL in `curl` / Python above) or the **web dashboard**. (The API does not stream the ZIP back in one synchronous call; see the notebook intro.)
 
 For **HUC8** (whole basin) or raw `requests` scripts, see **`examples/`** and **`docs/`**.
 

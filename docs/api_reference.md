@@ -67,7 +67,9 @@ User’s Celery-tracked tasks plus `model_creation_broker` snapshot (slots, queu
 
 ## 📦 Downloads
 
-- **Token link** (from email): `GET /download_model/<token>` — no API key; token is time-limited.
+- **Token URL (same as completion email):**  
+  `GET https://www.swatgenx.com/download_model/<token>` — returns **`application/zip`** as a download. **No API key** headers; the URL (especially the token segment) is secret. Suitable for **`curl -fL -o file.zip "<url>"`** or streaming **`requests.get(url, stream=True)`** — see **`examples/download_model.md`** and **`examples/download_model_by_token_url.py`**.  
+  Today the token URL is delivered in the **completion email** (and dashboard flows); **`GET /api/task_status/<task_id>`** does **not** echo this URL in JSON.
 - **Authenticated path**: browser or session-based `GET /download/...` under the user tree — see product docs when exposing zip layout.
 
 Errors return JSON with `status: error`, a `message`, and sometimes a machine `code` (e.g. `quota_exceeded`, `csrf_failed` without API key).
