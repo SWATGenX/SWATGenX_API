@@ -1,7 +1,10 @@
 # SWATGenX Model Creation API — generate SWAT+ models by USGS station or HUC8
 
-Public **Python examples** and **documentation** for the SWATGenX HTTPS API at **`https://www.swatgenx.com`**.  
-You provide a **USGS station ID** or **HUC8** (Pro); the API queues a model-creation **order**, returns **`order_id`** / **`task_id`**, and you poll status until the workspace is ready (downloads are usually via **email link** or the web dashboard).
+Public **Jupyter notebook** + small **Python** helpers for the SWATGenX API at **`https://www.swatgenx.com`**.
+
+**Fastest path:** open **`notebooks/01_simple_station_model.ipynb`** in JupyterLab — set your **API key** and **USGS station ID** (`site_no`), run all cells, wait until the task shows **SUCCESS**, then use the **email download link** or the **web dashboard** to fetch files. (The API does not stream the ZIP back in one synchronous call; see the notebook intro.)
+
+For **HUC8** (whole basin) or raw `requests` scripts, see **`examples/`** and **`docs/`**.
 
 **Repository:** [github.com/Vahidr32/SWATGenX](https://github.com/Vahidr32/SWATGenX)  
 This tree is also maintained inside the private SWATGenX monorepo as **`documents/public_swatgenx_api_examples/`** for drift control — publish by syncing that folder here (no backend code, no private paths).
@@ -26,25 +29,27 @@ SWATGenX offers authenticated HTTP APIs to queue **SWAT+** model builds from nat
 
 Downloads of completed workspaces are typically issued via **email links** (token-based `GET /download_model/<token>`) or the signed-in web app (`/download/...`). See `docs/api_reference.md`.
 
-## Quick start (local copy of this bundle)
+## Quick start (JupyterLab — recommended)
 
 ```bash
-cd documents/public_swatgenx_api_examples
+cd documents/public_swatgenx_api_examples   # path inside private monorepo; or clone the public GitHub repo
 python3 -m venv .venv && . .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env   # edit: set SWATGENX_API_KEY
-python examples/create_model_by_usgs_station.py
+pip install jupyterlab requests
+export SWATGENX_API_KEY='sgx_…'
+jupyter lab notebooks/01_simple_station_model.ipynb
 ```
+
+CLI alternative: `pip install -r requirements.txt` then `python examples/create_model_by_usgs_station.py`.
 
 ## Layout
 
 | Path | Purpose |
 |------|---------|
+| **`notebooks/01_simple_station_model.ipynb`** | **Main user story:** station ID + API key → submit → poll → download guidance. |
 | `examples/*.py` | Minimal `requests` scripts (no pip package). |
-| `docs/` | Authentication summary + endpoint table + example station list. |
-| `example_outputs/` | Placeholder for screenshots when you publish the public repo. |
-| `notebooks/README.md` | How to paste examples into Jupyter / Colab. |
-| `requirements.txt` | `requests` only for v1. |
+| `docs/` | Authentication, tiers, endpoint table. |
+| `example_outputs/` | Screenshots when you publish. |
+| `requirements.txt` | `requests` only (add `jupyterlab` locally for the notebook). |
 | `.env.example` | Variable names only — **never** commit real keys. |
 
 ## Website
