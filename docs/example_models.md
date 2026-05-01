@@ -17,4 +17,6 @@ These USGS `site_no` values are used in SWATGenX internal reliability harnesses:
 
 **HUC8 example (Pro):** `04100004` — verify in UI that the watershed is valid for your account before automating.
 
+**Outlet HUC12 (Basic/Pro):** pick a **12-digit WBD outlet** from Watershed Explorer, then call **`POST /api/model-settings/explorer-watershed`** with **`outlet_huc12`** (see **`examples/create_model_by_outlet_huc12.py`**). Resolved upstream HUC12 count must fit your tier (see **`docs/subscription_tiers.md`**).
+
 Resolutions in API examples often use **`ls_resolution=250`** and **`dem_resolution=30`** (meters); product tier rules still apply server-side.

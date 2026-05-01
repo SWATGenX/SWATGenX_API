@@ -24,6 +24,7 @@ The web UI uses Flask-Login sessions. Script-style clients should prefer **API k
 
 - **Verified** email / watershed policy may apply for certain stations on Basic plans.
 - **HUC8** model creation requires an **Effective Pro** tier (see main README in this bundle).
+- **Outlet HUC12** catalog watershed builds (`POST /api/model-settings/explorer-watershed`) use the same **Basic vs Pro** contributing-HUC12 limits as **USGS station** builds — they are **not** gated like whole-basin HUC8.
 
 ## 📁 Environment variables
 

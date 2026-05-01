@@ -7,7 +7,7 @@ Base URL: `https://www.swatgenx.com` (use `www` so `/api/*` hits the app, not th
 
 ## 🗺️ Discovery (same data the map uses — no API key)
 
-These **GET** routes power the Watershed Explorer UI: pick a USGS site or an HUC8, then draw contributing **HUC12** subbasins. They return JSON the SPA uses for outlines and counts. **You do not need to send API keys** for these read-only calls (rate limits and infrastructure still apply).
+These **GET** routes power the Watershed Explorer UI: pick a USGS site, an HUC8, or a WBD **catalog HUC12** outlet, then draw contributing **HUC12** subbasins. They return JSON the SPA uses for outlines and counts. **You do not need to send API keys** for these read-only calls (rate limits and infrastructure still apply).
 
 | Method | Path | Query | Returns (high level) |
 |--------|------|-------|----------------------|
@@ -15,7 +15,7 @@ These **GET** routes power the Watershed Explorer UI: pick a USGS site or an HUC
 | GET | `/api/get_huc8_characteristics` | `huc8=<8-digit code>` | HUC8 label, **`Num HUC12 subbasins`**, and the same style of geometry payloads for all HUC12s in the basin. |
 | GET | `/api/huc8-basin-summary` | `huc8=<8-digit code>` | Lightweight JSON: name, **`Num HUC12 subbasins`**, `watershed_area_sqkm` — no heavy geometry arrays. |
 
-Use **`Num HUC12 subbasins`** (or count parsed HUC12 IDs) before calling **`POST /api/model-settings`**: on **Basic**, the server rejects stations above the HUC12 cap (see `docs/subscription_tiers.md`).
+Use **`Num HUC12 subbasins`** (or count parsed HUC12 IDs) before calling **`POST /api/model-settings`**: on **Basic**, the server rejects stations above the HUC12 cap (see `docs/subscription_tiers.md`). For **`POST /api/model-settings/explorer-watershed`**, the server resolves upstream HUC12s and applies the **same Basic cap** on the resolved count.
 
 ---
 
@@ -40,6 +40,10 @@ Queue or start a **station-centered** (USGS / PRISM site) SWAT+ model.
 ## `POST /api/model-settings-huc8`
 
 Whole-basin HUC8 build. Body includes `huc8` or `huc8_code` (eight digits). **Pro-only** in production.
+
+## `POST /api/model-settings/explorer-watershed`
+
+Queue a SWAT+ build for a **WBD catalog watershed** defined by its **outlet HUC12** (12 digits). The server resolves upstream contributing HUC12s (same NHDPlus HR pipeline as station-centered builds). **Required body field:** `outlet_huc12` (alias `outletHuc12`). Optional fields mirror **`POST /api/model-settings`** where applicable (resolutions, calibration flags — cal/val remains **Pro-only**). **Basic:** rejected when resolved HUC12 count exceeds the same cap as stations (see `docs/subscription_tiers.md`).
 
 ## `GET /api/model-orders?limit=50`
 

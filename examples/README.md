@@ -9,11 +9,13 @@ Run from the bundle root so `os.environ` loads from your shell after `export` or
 export SWATGENX_API_KEY='sgx_…'
 export SWATGENX_BASE_URL='https://www.swatgenx.com'
 python examples/create_model_by_usgs_station.py
+python examples/create_model_by_outlet_huc12.py
 ```
 
 | Script | Purpose |
 |--------|---------|
 | `create_model_by_usgs_station.py` | `POST /api/model-settings` |
+| `create_model_by_outlet_huc12.py` | `POST /api/model-settings/explorer-watershed` (WBD outlet HUC12) |
 | `create_model_by_huc8.py` | `POST /api/model-settings-huc8` (Pro) |
 | `list_model_orders.py` | `GET /api/model-orders` (order status / queue rows) |
 | `list_user_tasks.py` | `GET /api/user_tasks` (Celery rows + `model_creation_broker`) |

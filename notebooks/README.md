@@ -9,6 +9,8 @@
 |----------|---------|
 | **`01_simple_station_model.ipynb`** | Minimal flow: set **USGS station ID** + **API key** → submit → poll until **SUCCESS** / failure → notes on **email / dashboard** download. |
 
+**Outlet HUC12 (WBD catalog watershed):** use **`../examples/create_model_by_outlet_huc12.py`** with **`SWATGENX_EXAMPLE_OUTLET_HUC12`** — same polling and download story as the station notebook.
+
 ## 💻 Run locally (JupyterLab)
 
 ```bash

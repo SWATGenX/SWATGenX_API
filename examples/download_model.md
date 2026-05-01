@@ -2,7 +2,7 @@
 
 [![Download](https://img.shields.io/badge/flow-token%20URL-0ea5e9?style=flat-square)](https://www.swatgenx.com)
 
-Completed SWAT+ workspaces are **not** returned in the JSON body of `POST /api/model-settings`. When the Celery job finishes, SWATGenX sends a **completion email** that contains the same **tokenized download URL** the product has always used: a plain **`GET`** that streams a ZIP.
+Completed SWAT+ workspaces are **not** returned in the JSON body of the model submit endpoints (`POST /api/model-settings`, `POST /api/model-settings/explorer-watershed`, or `POST /api/model-settings-huc8`). When the Celery job finishes, SWATGenX sends a **completion email** that contains the same **tokenized download URL** the product has always used: a plain **`GET`** that streams a ZIP.
 
 ## Same link as the email — use it from scripts
 
